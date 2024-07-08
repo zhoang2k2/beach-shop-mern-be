@@ -6,8 +6,11 @@ import ProductsRoute from "./routes/ProductsRoute";
 import CategoriesRoute from "./routes/CategoriesRoute";
 import SizesRoute from "./routes/SizesRoute";
 import ColorsRoute from "./routes/ColorsRoute";
+import CustomersRoute from "./routes/CustomersRoute";
 
 const app = express();
+
+app.use(express.json());
 
 app.use(
   cors({
@@ -19,13 +22,14 @@ app.use(
 
 app.get("/", (require, response) => {
   console.log(require);
-  return response.status(234).send("this is beach shop!");
+  return response.status(234).send("this is beach shop api!");
 });
 
 app.use("/api/products", ProductsRoute);
 app.use("/api/categories", CategoriesRoute);
 app.use("/api/sizes", SizesRoute);
 app.use("/api/colors", ColorsRoute);
+app.use("/api/customers", CustomersRoute);
 
 mongoose
   .connect(mongoDB)
